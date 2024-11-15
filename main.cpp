@@ -7,9 +7,12 @@ using namespace std;
 
 // print 
 void display(const deque<Car> queue) {
-    cout << "Queue:" << endl;
-    for (const auto car : queue) {
-        car.print();
+    if (queue.empty()) {
+        cout << "    Empty";
+    } else {
+        for (const auto car : queue) {
+            car.print();
+        }
     }
 }
 
@@ -22,10 +25,11 @@ int main() {
     }
     cout << "Initial queue:" << endl;
     display(Cqueue);
+    cout << endl;
 
-    int time=0;
+    int time=1;
     while(!Cqueue.empty()) {
-        cout << "Time " << time << "Operation: ";
+        cout << "Time " << time << " operation: ";
         // 55% probability that the car at the head of the line pays its toll and leaves the toll booth
 
         if (rand() % 100 < 55) {
@@ -40,10 +44,12 @@ int main() {
             newCar.print();
             Cqueue.push_back(newCar);
         }
-        
+        cout << "Queue:" << endl;
+
         // print every end of the time
         display(Cqueue);
         cout << endl;
+        time++;
     }
     return 0;
 }
