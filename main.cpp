@@ -35,7 +35,15 @@ int main() {
         } 
         // 45% probability that another car joins the line for the toll booth
         else {
-
+            Car newCar;
+            cout << "Joined lane: ";
+            newCar.print();
+            Cqueue.push_back(newCar);
         }
+        
+        // print every end of the time
+        display(Cqueue);
+        cout << endl;
     }
+    return 0;
 }
