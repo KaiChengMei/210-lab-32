@@ -52,20 +52,29 @@ int main() {
 
             // 46% probability that the car at the head of the queue pays its toll and leaves the queue
             if (random < pay) {
-                cout << "Car paid: ";
-                Cqueue.front().print();
-                Cqueue.pop_front();
+                cout << "Lane " << a+1 << " paid: ";
+                lanes[a].front().print();
+                lanes[a].pop_front();
             } 
             // 39% probability that another car joins the queue
             else if (random < pay+join ){
                 Car newCar;
-                cout << "Joined lane: ";
+                cout << "Lane " << a+1 << " lane: ";
                 newCar.print();
-                Cqueue.push_back(newCar);
+                lanes[a].push_back(newCar);
             }
             // 15% probability that the rear car will shift lanes
             else if (random < pay+join+switchs ) {
-                
+                // choose the new lane except the origin lane
+                int newlane = 0;
+                while (newlane = (a+1)) {
+                    newlane = rand() % lanecount;
+                }
+
+                cout << "Lane " << (a+1) << " switched: ";
+                lanes[a].back.print();
+                lanes[newlane].push_back(lanes[a].back());
+                lanes[a]pop_back();
             }
 
         }
