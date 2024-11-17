@@ -18,6 +18,7 @@ void display(const array<deque<Car>, lanecount> lanes) {
         cout << "Lane " << i+1 << " Queue: ";
         if (lanes[i].empty()) {
             cout << "Empty";
+            cout << endl;
         } else {
             cout << endl;
             for (const auto& car : lanes[i]) {
@@ -44,7 +45,6 @@ int main() {
     cout << endl;
 
     for( int time = 1; time <= endtime; time++) {
-        cout << endl;
         cout << "Time " << time << endl;
 
         for ( int a = 0; a < lanecount; a++) {
@@ -70,7 +70,7 @@ int main() {
                 else if (random < pay+join+switchs ) {
                     // choose the new lane except the origin lane
                     int newlane = 0;
-                    while (newlane == (a+1)) {
+                    while (newlane == a) {
                         newlane = rand() % lanecount;
                     }
 
