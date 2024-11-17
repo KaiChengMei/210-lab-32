@@ -6,11 +6,11 @@
 #include <array>
 using namespace std;
 
-const int lanecount;
-const int endtime;
-const int pay;
-const int join;
-const int switchs;
+const int lanecount = 4;
+const int endtime = 20;
+const int pay = 46;
+const int join = 39;
+const int switchs = 15;
 
 // print 
 void display(const array<deque<Car>, lanecount> lanes) {
@@ -20,7 +20,7 @@ void display(const array<deque<Car>, lanecount> lanes) {
             cout << "Empty";
         } else {
             cout << endl;
-            for (const auto car : lanes[i]) {
+            for (const auto& car : lanes[i]) {
                 car.print();
             }
         }
@@ -33,17 +33,16 @@ int main() {
 
     // initial 
     int numcar;
-    for(auto lane ; lanes) {
+    for(auto& lane : lanes) {
         numcar = rand() % 3 + 1;
         for(int i = 0; i < numcar; i++) {
-        lanecount.push_back(Car());
+        lane.push_back(Car());
         }
     }
     cout << "Initial queue:" << endl;
     display(lanes);
     cout << endl;
 
-    int time=1;
     for( int time = 1; time <= endtime; time++) {
         cout << "Time " << time << endl;
 
@@ -74,15 +73,15 @@ int main() {
                 cout << "Lane " << (a+1) << " switched: ";
                 lanes[a].back.print();
                 lanes[newlane].push_back(lanes[a].back());
-                lanes[a]pop_back();
+                lanes[a].pop_back();
             }
 
         }
 
         // print every end of the time
-        display(Cqueue);
+        display(lanes);
         cout << endl;
-        time++;
+        
     }
     return 0;
 }
