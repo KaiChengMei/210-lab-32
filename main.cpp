@@ -3,18 +3,21 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <array>
 using namespace std;
 
 const int lanecount;
+const int endtime;
 
 // print 
 void display(const array<deque<Car>, lanecount> lanes) {
     for (int i = 0; i < lanecount; i++) {
         cout << "Lane " << i+1 << " Queue: ";
-        if (queue.empty()) {
-            cout << "    Empty";
+        if (lanes[i].empty()) {
+            cout << "Empty";
         } else {
-            for (const auto car : queue) {
+            cout << endl;
+            for (const auto car : lanes[i]) {
                 car.print();
             }
         }
@@ -26,15 +29,19 @@ int main() {
     array<deque<Car>,lanecount> lanes;
 
     // initial 
-    for(int i = 0;i < 2; i++) {
-    Cqueue.push_back(Car());
+    int numcar;
+    for(auto lane ; lanes) {
+        numcar = rand() % 3 + 1;
+        for(int i = 0; i < numcar; i++) {
+        lanecount.push_back(Car());
+        }
     }
     cout << "Initial queue:" << endl;
-    display(Cqueue);
+    display(lanes);
     cout << endl;
 
     int time=1;
-    while(!Cqueue.empty()) {
+    for( int time = 1; time <= endtime; time++) {
         cout << "Time " << time << " operation: ";
         // 55% probability that the car at the head of the line pays its toll and leaves the toll booth
 
