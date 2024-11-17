@@ -8,6 +8,9 @@ using namespace std;
 
 const int lanecount;
 const int endtime;
+const int pay;
+const int join;
+const int switchs;
 
 // print 
 void display(const array<deque<Car>, lanecount> lanes) {
@@ -42,22 +45,30 @@ int main() {
 
     int time=1;
     for( int time = 1; time <= endtime; time++) {
-        cout << "Time " << time << " operation: ";
-        // 55% probability that the car at the head of the line pays its toll and leaves the toll booth
+        cout << "Time " << time << endl;
 
-        if (rand() % 100 < 55) {
-            cout << "Car paid: ";
-            Cqueue.front().print();
-            Cqueue.pop_front();
-        } 
-        // 45% probability that another car joins the line for the toll booth
-        else {
-            Car newCar;
-            cout << "Joined lane: ";
-            newCar.print();
-            Cqueue.push_back(newCar);
+        for ( int a = 0; a < lanecount; a++) {
+            int random = rand() % 100;
+
+            // 46% probability that the car at the head of the queue pays its toll and leaves the queue
+            if (random < pay) {
+                cout << "Car paid: ";
+                Cqueue.front().print();
+                Cqueue.pop_front();
+            } 
+            // 39% probability that another car joins the queue
+            else if (random < pay+join ){
+                Car newCar;
+                cout << "Joined lane: ";
+                newCar.print();
+                Cqueue.push_back(newCar);
+            }
+            // 15% probability that the rear car will shift lanes
+            else if (random < pay+join+switchs ) {
+                
+            }
+
         }
-        cout << "Queue:" << endl;
 
         // print every end of the time
         display(Cqueue);
