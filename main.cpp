@@ -5,19 +5,25 @@
 #include <iostream>
 using namespace std;
 
+const int lanecount;
+
 // print 
-void display(const deque<Car> queue) {
-    if (queue.empty()) {
-        cout << "    Empty";
-    } else {
-        for (const auto car : queue) {
-            car.print();
+void display(const array<deque<Car>, lanecount> lanes) {
+    for (int i = 0; i < lanecount; i++) {
+        cout << "Lane " << i+1 << " Queue: ";
+        if (queue.empty()) {
+            cout << "    Empty";
+        } else {
+            for (const auto car : queue) {
+                car.print();
+            }
         }
     }
 }
 
 int main() {
-    deque<Car> Cqueue;
+
+    array<deque<Car>,lanecount> lanes;
 
     // initial 
     for(int i = 0;i < 2; i++) {
